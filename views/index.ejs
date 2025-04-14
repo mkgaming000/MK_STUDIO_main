@@ -529,10 +529,16 @@ const thanksMessage = document.getElementById("thanksMessage");
 
  async function launchCashfree(paymentSessionId) {
     console.log(paymentSessionId);
-const cashfree = Cashfree({ mode: "production" });
+const cf = Cashfree({ mode: "production" }); // LIVE MODE
+
+      cf.checkout({
+        paymentSessionId: paymentSessionId,
+        redirectTarget: "_modal" // or "_self", "_blank"
+
+/*const cashfree = Cashfree({ mode: "production" });
     cashfree.checkout({
       paymentSessionId,
-      redirectTarget: "_modal"
+      redirectTarget: "_modal"*/
     });
   }
 
