@@ -528,7 +528,7 @@ const thanksMessage = document.getElementById("thanksMessage");
   }
 
  async function launchCashfree(paymentSessionId) {
-    const cashfree = Cashfree({ mode: "sandbox" });
+    const cf = Cashfree({ mode: "production" });
     cashfree.checkout({
       paymentSessionId,
       redirectTarget: "_modal"
