@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.static("public"))
 app.set("view engine", "ejs");
 
-const BASE_URL = "https://api.cashfree.com/pg/orders"
+const BASE_URL = "https://api.cashfree.com/pg"
   /*"https://api.cashfree.com/pg/orders//"https://sandbox.cashfree.com/pg";*/
 const DATA_FILE = "data.json";
 let add_count ;
