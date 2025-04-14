@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MK GAME STUDIO</title>
+
+  <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+
+</head>
+
+
+<style>
+
+  body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      height: 100%;
+      background: #000;
+     user-select:none;
+    }
+
+    .hero-section {
+      background-image: url('poster.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      height: 150vh;
+    }
+
+     .overlay {
+    background-color: rgba(0, 0, 0, -50.6);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+  }        
+
+  .support-box input {
+     padding: 12px;
+     font-size: 1rem;
+     width: 90%;
+     margin-bottom: 1rem;
+     border-radius: 5px;
+     border: none;
+      }
+
+  .support-box button {
+        padding: 15px 25px;
+        background-color: #00ff99;
+        border: none;
+        color: #000;
+        font-weight: bold;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }    
+
+  .support-box button:hover {
+    background-color: #00cc77;
+  }
+
+  header p {
+    font-size: 15px;
+    color: #ccc;
+    margin-top: 1rem;
+  }
+
+  .support-box {
+    margin: auto;
+    max-width: 300px;
+    padding: 32px;
+    border-radius: 10px;
+    font-size: 18px;
+  }
+
+  .sup_titel {
+    padding-top: 2rem;
+    font-size: 1.2rem;
+    padding-bottom: 0;
+  }
+
+  .support-box h2 {
+    margin-bottom: 0.8rem;
+    color: #00ff99;
+  }
+
+ /* .support-box input[type="number"] {
+    padding: 12px;
+    font-size: 1rem;
+    width: 90%;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: none;
+  }
+  */
+
+
+    .disclaimer {
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 10px;
+      border-radius: 5px;
+      color: #ccc;
+      border-left: 4px solid #00ff88;
+    }
+
+
+  footer {
+    background-color: #1a1a1a;
+    padding: 1rem;
+    font-size: 0.6rem;
+    color: #999;
+    text-align: center;
+  }
+
+   .piracy-policy {
+      margin-top: 0.5rem;
+      font-size: 0.5rem;
+      color: #bbb;
+    }
+
+  .support-box {
+
+          margin: auto;
+          max-width: 300px;
+          padding: 32px;
+          border-radius: 10px;
+          font-size: 18px;
+          margin-top: 0px;
+        }
+
+    .container2 {
+      width: 80%;
+      max-width: 500px;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border: 4px solid dodgerblue;
+      border-radius: 15px;
+      padding: 20px;
+      z-index: 1000;
+      text-align: center;
+      display: none;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }      
+
+    .container2 .close {
+      box-shadow: none;
+      border: none;
+      background: none;
+      margin-left: 85%;
+      padding: 5px;
+    }   
+
+   .user-amount {
+     font-size: 2.5rem;
+     color: #00cc88;
+     margin: 10px 0;
+   }
+
+    .status-text {
+      color: orange;
+    }
+
+    .sub-status {
+      background: #007bff;
+      color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+
+  .countdown-timer {
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+  }
+
+  .note {
+    color: #333;
+    font-size: 0.75rem;
+    margin-top: 10px;
+  }
+
+    .error {
+      margin-top: 0px;
+      margin-bottom: 1rem;
+      color: red;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .error.show {
+      display: block;
+    }
+
+
+</style>
+
+
+<body>
+
+    <div class="hero-section">
+      <div class="overlay">
+
+        <header>
+          <p>A brutal, soul-like action game – support the journey!</p>
+        </header>
+
+        <div class="sup_titel">
+          <h3>Minimum Amount</h3>
+          <h1>&#x20B9;20</h1>
+        </div>
+
+
+
+        <section class="support-box">
+
+          <h2>Support the Game</h2>
+          <h3> YOUR GETTING GAME EARLY ACCESS </h3>
+          <h4>You Get Game Updates</h4>
+          <p>We're building this game with passion and heart. Every rupee you give helps us go further.</p>
+
+          <form id="paymentForm">
+
+            <div style="border:3px solid dodgerblue;border-radius:15px;padding:20px 20px 0px 20px;background: rgba(30, 144, 255, 0.5)" class="input_container">
+              <label>Enter amount :</label>
+              <input type="number" id="amount" placeholder="₹20" required>
+              <p id="amount-error" class="error"><b>Minimum ₹20 is required</b></p>
+
+
+              <label>Enter Email ID :</label>
+              <input type="email" id="email" placeholder="Enter Email" required>
+              <p id="email-error" class="error"><b>Enter a valid email</b></p>
+              <br>
+
+            </div>
+            <!-- <input type="number" id="phone" placeholder="Enter Phone Number" required><br><br>-->
+            <br>
+            <button id="payNowBtn" type="button" onclick="initiatePayment()">Pay Now</button>
+          </form>
+
+          <button id="view">View Status</button>
+
+          <div class="container2" id="paymentStatusPopup">
+            <button id="closePopup" class="close">
+              <img width="20px" src="https://img.icons8.com/?size=100&id=71200&format=png&color=000000" alt="Close" />
+            </button>
+
+            <h2 id="status" class="status-text">Processing...</h2>
+            <h3 id="sup_status" class="sub-status">Please Wait</h3>
+            <h1 id="user_amount" class="user-amount">&#x20B9;0</h1>
+
+            <h2 id="countdown" class="countdown-timer" style="display: block;color: red;">01:00</h2>
+            <h2 class="thanks" id="thanksMessage" style="display: none;">Thank You For Your Support</h2>
+
+
+            <p class="note">
+              <strong>Note:</strong> You're supporting MK_STUDIO. You'll receive early access and game updates.
+            </p>
+
+            <button id="refresh" style="font-size: 0.7rem;padding:7px;">Refresh</button>
+
+
+          </div>
+
+
+
+          <div class="disclaimer">
+            <p><strong>Disclaimer:</strong> This is a genuine indie game project. All funds go directly to the development of <em>Destroyer</em>. No scams. No tricks. Just pure passion for game development.</p>
+          </div>
+
+        </section>
+
+
+        <footer>
+          <p>&copy; 2025 Destroyer Game | Made with passion by MK</p>
+          <p class="piracy-policy"><strong>Piracy Policy:</strong> Please don’t copy or redistribute our work illegally. Support the indie game industry and the creators who build it.</p>
+          <p>
+
+            <a href="/terms_and_condition" style="color: #00ff99; text-decoration: none;">Terms & Conditions</a> |
+            <a href="/contact_us" style="color: #00ff99; text-decoration: none;">Contact Us</a>
+          </p>
+        </footer>
+
+      </div>
+   </div>
+
+<script>
+
+const payNowBtn = document.getElementById("payNowBtn");
+const view_status = document.getElementById("view");
+const user_amount = document.getElementById("user_amount")
+const emailError = document.getElementById("email-error");
+const amountError = document.getElementById("amount-error");
+const refresh = document.getElementById("refresh")
+
+
+
+const popup = document.getElementById("paymentStatusPopup");
+const closeBtn = document.getElementById("closePopup");
+const statusText = document.getElementById("status");
+const supStatus = document.getElementById("sup_status");
+const userAmount = document.getElementById("user_amount");
+const countdown = document.getElementById("countdown");
+const thanksMessage = document.getElementById("thanksMessage");
+
+
+
+  let timeInSeconds = 60; // Timer set to 60 seconds
+  let timer;
+  let temporary_order_id;
+  let payment_success_status;
+
+  const developer = {
+    payment_URL: "/payment",
+    verify_URL: "/verify",
+    verify_INTERVEL: 60, //only seconds
+    TIMER_time: 5 //only minutes
+
+  }
+
+
+  view_status.style.display="none"
+
+  closeBtn.addEventListener("click", () => {
+    popup.style.display = "none";
+  });
+  view_status.addEventListener('click', () => {
+    popup.style.display = "block"
+  })
+
+
+  refresh.addEventListener('click', async () => {
+    const isVerified = await verifyPayment(temporary_order_id);
+
+    if (isVerified) {
+      updatePopupStatus(true);
+    
+      return;
+    }
+
+    const timeExpired = countdown.innerText === "00:00";
+
+    if (timeExpired && !payment_success_status) {
+      if (typeof timer !== "undefined") {
+        clearInterval(timer);
+      }
+
+      console.log("Payment not completed in time");
+      updatePopupStatus(false);
+    }
+  });
+
+
+
+  function showPopup(amount = 0) {
+    popup.style.display = "block"; // Use "flex" for centering the modal
+
+    userAmount.innerHTML = `&#x20B9;${amount}`;
+    statusText.innerText = "Processing...";
+    statusText.style.color = "orange";
+
+    supStatus.innerText = "Please Wait";
+    supStatus.style.background = "#007bff"; // Bootstrap-like blue
+
+    countdown.style.display = "none";
+    thanksMessage.style.display = "none";
+  }
+
+  function updatePopupStatus(success) {
+    if (success) {
+      statusText.innerText = "Payment Successful";
+      statusText.style.color = "green";
+
+      supStatus.innerText = "Completed";
+      supStatus.style.background = "green";
+
+      countdown.style.display = "none";
+      clearInterval(timer);
+
+      countdown.innerText = "00:00";
+      thanksMessage.style.display = "block";
+      togglePayButton(true)
+      toggleViewStatus(false);
+    } else {
+      statusText.innerText = "Payment Failed";
+      statusText.style.color = "red";
+
+      supStatus.innerText = "Try Again";
+      supStatus.style.background = "red";
+
+      countdown.style.display = "none";
+      thanksMessage.style.display = "none";
+    }
+  }
+
+
+  // create payment order 
+
+  async function initiatePayment() {
+    const amount = parseFloat(document.getElementById("amount").value);
+    const email = document.getElementById("email").value;
+
+    // Basic validation
+    if (!isValidAmount(amount) || !isValidEmail(email)) return;
+
+
+
+    try {
+      const paymentData = await createPaymentSession(amount, email);
+      if (!paymentData?.payment_session_id) {
+        showError("Failed to initiate payment session.");
+        return;
+      }
+
+      // Launch Cashfree checkout
+      launchCashfree(paymentData.payment_session_id);
+      // Show initial UI feedback
+      showPopup();
+      togglePayButton(false);
+      toggleViewStatus(false);
+
+      temporary_order_id = paymentData.order_id;
+      user_amount.innerHTML = `&#x20B9;${amount}`;
+
+
+
+      toggleViewStatus(true);
+
+      // Start verifying payment after 35 seconds
+      setTimeout(() => {
+        const verifyInterval = setInterval(async () => {
+          const verified = await verifyPayment(paymentData.order_id);
+          if (verified || countdown.innerText === "00:00") {
+            clearInterval(verifyInterval);
+            resetUIAfterVerification();
+          }
+
+          if (countdown.innerText ==="00:00" && !payment_success_status) {
+           updateCountdownDisplay(false);
+          updatePopupStatus(false);
+          }
+        }, developer.verify_INTERVEL * 1000);
+      }, 10000);
+
+      startCountdown();
+    } catch (error) {
+      console.error("Error during payment:", error);
+      showError("Payment initiation failed.");
+    }
+  }
+
+  //--------------
+  //verify payment function
+
+  async function verifyPayment(orderId) {
+    try {
+      const response = await fetch(developer.verify_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      if (result.success) {
+        handlePaymentSuccess();
+        return true;
+      } else {
+        handlePaymentFailure();
+        return false;
+      }
+    } catch (error) {
+      console.error("Verification Error:", error);
+      if(countdown.innerText==="00:00"){
+      updatePopupStatus(false)
+
+      }
+     // showVerificationError();
+      return false;
+    }
+  }
+
+
+
+  // Helper functions
+
+  function isValidAmount(amount) {
+    const valid = !isNaN(amount) && amount >= 20;
+    amountError.classList.toggle("show", !valid);
+    return valid;
+  }
+
+  function isValidEmail(email) {
+    const valid = /^\S+@\S+\.\S+$/.test(email);
+    emailError.classList.toggle("show", !valid);
+    return valid;
+  }
+
+  async function createPaymentSession(amount, email) {
+    const response = await fetch(developer.payment_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount, email })
+    });
+
+    if (!response.ok) throw new Error("Network response was not ok");
+    return response.json();
+  }
+
+ async function launchCashfree(paymentSessionId) {
+    const cashfree = Cashfree({ mode: "sandbox" });
+    cashfree.checkout({
+      paymentSessionId,
+      redirectTarget: "_modal"
+    });
+  }
+
+  function togglePayButton(enabled) {
+    payNowBtn.disabled = !enabled;
+    payNowBtn.style.display = enabled ? "" : "none";
+  }
+
+  function toggleViewStatus(visible) {
+    view_status.style.display = visible ? "" : "none";
+  }
+
+  function resetUIAfterVerification() {
+    togglePayButton(true);
+    toggleViewStatus(false);
+  }
+
+  function showError(message) {
+    alert(message);
+    resetUIAfterVerification();
+  }
+
+
+  function handlePaymentSuccess() {
+    payment_success_status = true;
+    countdown.style.display = "none";
+    updatePopupStatus(true);
+
+    if (typeof timer !== "undefined") {
+      clearInterval(timer);
+    }
+
+    countdown.innerText = "00:00";
+  }
+
+  function handlePaymentFailure() {
+    payment_success_status = false;
+    // Optional: updatePopupStatus(false); // If you want to immediately show failure
+  }
+
+  function showVerificationError() {
+    const statusEl = document.getElementById("status");
+    if (statusEl) {
+      statusEl.innerText = "Status: Verification Failed";
+      statusEl.style.color = "red";
+    }
+  }
+
+
+
+  function startCountdown(durationInSeconds = developer.TIMER_time * 60) { // Default is 5 minutes
+    countdown.style.display = 'block';
+    timeInSeconds = durationInSeconds;
+
+    updateCountdownDisplay(timeInSeconds);
+
+    clearInterval(timer);
+    timer = setInterval(() => {
+      if (timeInSeconds > 0) {
+        timeInSeconds--;
+        updateCountdownDisplay(timeInSeconds);
+      } else {
+        clearInterval(timer);
+        countdown.style.display = "none";
+        countdown.innerText = "00:00"
+        payNowBtn.style.display = "inline-block";
+        view_status.style.display = "none";
+      }
+    }, 1000);
+  }
+
+  function updateCountdownDisplay(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    countdown.textContent = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  }
+</script>
+
+
+</body>
+
+</html>
