@@ -42,6 +42,11 @@ app.get("/", (req, res) => {
 });
 
 
+app.post('/api/payment/webhook', (req, res) => {
+  console.log("Webhook received:", req.body);
+  res.status(200).send('OK');
+});
+                  
 
 app.get("/terms_and_condition", (req, res) => {
 res.render("terms_and_condition");
