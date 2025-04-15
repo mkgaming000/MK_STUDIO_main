@@ -84,7 +84,13 @@ app.post("/payment", async (req, res) => {
       customer_email: email,
       customer_phone: "9999999999",
       customer_name: "MK Supporter"
-    }
+    },
+
+    order_meta: {
+    return_url: 'https://yourdomain.com/success?order_id={order_id}',
+    notify_url: 'https://yourdomain.com/api/payment/webhook'
+  }
+    
   };
 
   try {
