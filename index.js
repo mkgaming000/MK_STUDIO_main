@@ -87,8 +87,8 @@ app.post("/payment", async (req, res) => {
     },
 
     order_meta: {
-    return_url: 'https://yourdomain.com/success?order_id={order_id}',
-    notify_url: 'https://yourdomain.com/api/payment/webhook'
+    return_url:'https://mk-game.onrender.com',
+    notify_url: 'https://mk-game.onrender.com/api/payment/webhook'
   }
     
   };
